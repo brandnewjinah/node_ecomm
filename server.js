@@ -12,9 +12,24 @@
 const express = require("express")
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const app = express()
 const productRoute = require('./routes/product')
 const orderRoute = require('./routes/order')
+
+//DB 설정
+const dbAddress = "mongodb+srv://admin:112Labo*@cluster0.vm1nl.mongodb.net/node_ecomm?retryWrites=true&w=majority"
+
+const dbOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+mongoose
+    .connect(dbAddress, dbOptions)
+    .then(() => console.log("db connected"))
+    .catch(err => console.log(err.message))
+
 
 //middleware 설정
 app.use(morgan('dev'))
