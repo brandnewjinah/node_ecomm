@@ -11,12 +11,19 @@
 
 const express = require("express")
 const app = express()
+const productRoute = require('./routes/product')
+const orderRoute = require('./routes/order')
 
-app.use((req, res) => {
-    res.json( {
-        message: "rest api server start"
-    })
-})
+app.use('/product', productRoute);
+app.use('/order', orderRoute)
+
+// app.use((req, res) => {
+//     res.json( {
+//         message: "rest api server start"
+//     })
+// })
+
+
 
 const PORT = 5000;
 
