@@ -4,8 +4,19 @@
 //3. 함수 호출은 .으로 표시
 //4. , 는 "그리고"라고 해
 
+
+//request => 클릭, 마우스의 행동, 도메인
+//response => 서버에서 무엇을 내 보낼지 정
+
+
 const express = require("express")
 const app = express()
+
+app.use((req, res) => {
+    res.json( {
+        message: "rest api server start"
+    })
+})
 
 const PORT = 5000;
 
