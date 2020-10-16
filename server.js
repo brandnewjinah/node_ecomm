@@ -13,12 +13,14 @@ const express = require("express")
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config()
 const app = express()
 const productRoute = require('./routes/product')
 const orderRoute = require('./routes/order')
 
 //DB 설정
-const dbAddress = "mongodb+srv://admin:112Labo*@cluster0.vm1nl.mongodb.net/node_ecomm?retryWrites=true&w=majority"
+
 
 const dbOptions = {
     useNewUrlParser: true,
@@ -26,7 +28,7 @@ const dbOptions = {
 }
 
 mongoose
-    .connect(dbAddress, dbOptions)
+    .connect(process.env.MONGODV_ADDRESS, dbOptions)
     .then(() => console.log("db connected"))
     .catch(err => console.log(err.message))
 
@@ -48,6 +50,6 @@ app.use('/order', orderRoute)
 
 
 
-const PORT = 5000;
+const PORT = process.env.PORT || 7000;
 
 app.listen(PORT, console.log('server connected'));
